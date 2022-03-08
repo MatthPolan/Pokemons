@@ -3,18 +3,17 @@
     <mat-grid-tile>
       <mat-list>
         <mat-list-item>
-          <img
-            class="img"
-            src="../../../assets/img/official-artwork/{{
-              pokemonDetail.id
-            }}.png"
-            alt="pokemon image"
-          />
+          <div class="img-with-text">
+            <img
+              src="../../../assets/img/official-artwork/{{
+                pokemonDetail.id
+              }}.png"
+              alt="pokemon image"
+            />
+            <p>No. {{ pokemonDetail.id | number: "3.0-0" }}</p>
+          </div>
         </mat-list-item>
       </mat-list>
-      <mat-list-item>
-        No. {{ pokemonDetail.id | number: "3.0-0" }}
-      </mat-list-item>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-list>
