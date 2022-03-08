@@ -1,0 +1,17 @@
+<mat-list>
+  <mat-nav-list infiniteScroll (scrolled)="onScroll()">
+    <mat-list-item
+      routerLink="/pokemon/{{ pokemon.id }}"
+      *ngFor="let pokemon of pokemons"
+    >
+      <img
+        matListAvatar
+        src="../../../assets/img/official-artwork/{{ pokemon.id }}.png"
+        alt="ahh"
+        class="avatar"
+      />
+      {{ pokemon.id }}.
+      {{ pokemon.name }}
+    </mat-list-item>
+  </mat-nav-list>
+</mat-list>

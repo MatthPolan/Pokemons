@@ -1,0 +1,49 @@
+<mat-card *ngIf="pokemonDetail">
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item>
+          <img
+            class="img"
+            src="../../../assets/img/official-artwork/{{
+              pokemonDetail.id
+            }}.png"
+            alt="pokemon image"
+          />
+        </mat-list-item>
+      </mat-list>
+      <mat-list-item>
+        No. {{ pokemonDetail.id | number: "3.0-0" }}
+      </mat-list-item>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item>
+          <mat-card-title>
+            {{ pokemonDetail.name }}
+            <button (click)="playsound()" mat-icon-button>
+              <mat-icon> play_circle </mat-icon>
+            </button></mat-card-title
+          >
+        </mat-list-item>
+        <mat-list-item>
+          <mat-chip-list>
+            <mat-chip *ngFor="let chip of pokemonDetail.types">
+              {{ chip }}
+            </mat-chip>
+          </mat-chip-list>
+        </mat-list-item>
+        <mat-list-item>
+          Taille: {{ pokemonDetail.height | number: "1.1-1" }} m
+        </mat-list-item>
+        <mat-list-item>
+          Poids: {{ pokemonDetail.weight | number: "1.1-1" }} kg
+        </mat-list-item>
+        <mat-list-item>
+          {{ pokemonDetail.description }}
+        </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+<button (click)="goBack()">back</button>
