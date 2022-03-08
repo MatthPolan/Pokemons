@@ -1,5 +1,10 @@
 <mat-list>
-  <mat-nav-list infiniteScroll (scrolled)="onScroll()">
+  <mat-nav-list
+    [scrollWindow]="false"
+    infiniteScroll
+    (scrolled)="onScroll()"
+    class="nav"
+  >
     <mat-list-item
       (click)="updateId(pokemon.id)"
       *ngFor="let pokemon of pokemons"

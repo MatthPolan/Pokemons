@@ -1,4 +1,4 @@
-<mat-card *ngIf="pokemonDetail" class="center-text">
+<mat-card class="center-text" *ngIf="pokemonDetail">
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile>
       <mat-list>
@@ -43,4 +43,3 @@
   </mat-grid-list>
   <h4>{{ pokemonDetail.description }}</h4>
 </mat-card>
-<button (click)="goBack()">back</button>
