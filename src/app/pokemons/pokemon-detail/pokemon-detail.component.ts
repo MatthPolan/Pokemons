@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/models/pokemon';
 import { PokemonService } from '../services/pokemon.service';
@@ -9,22 +9,24 @@ import { Location } from '@angular/common';
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
 })
-export class PokemonDetailComponent implements OnInit {
+export class PokemonDetailComponent implements OnInit, OnChanges {
+  @Input() idPokemon?: number;
   pokemonDetail!: Pokemon;
   audio?: HTMLAudioElement;
   constructor(
     private pokemonService: PokemonService,
-    private route: ActivatedRoute,
     private location: Location
   ) {}
 
-  ngOnInit(): void {
-    this.getHeroDetail();
-    this.loadsound();
+  ngOnInit(): void {}
+  ngOnChanges(): void {
+    if (this.idPokemon) {
+      this.getHeroDetail(this.idPokemon);
+      this.loadsound(this.idPokemon);
+    }
     this.playsound();
   }
-  getHeroDetail() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+  getHeroDetail(id: number) {
     this.pokemonService
       .getPokemonById(id)
       .subscribe((myResult) => (this.pokemonDetail = myResult));
@@ -32,12 +34,9 @@ export class PokemonDetailComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-  loadsound() {
+  loadsound(id: number) {
     this.audio = new Audio();
-    this.audio.src =
-      '/assets/audio/' +
-      Number(this.route.snapshot.paramMap.get('id')) +
-      '.mp3';
+    this.audio.src = '/assets/audio/' + id + '.mp3';
     this.audio.load();
   }
   playsound() {
