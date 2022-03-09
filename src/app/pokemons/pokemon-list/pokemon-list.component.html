@@ -5,6 +5,18 @@
     (scrolled)="onScroll()"
     class="nav"
   >
+    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+      <mat-label>Enter some input</mat-label>
+      <input
+        matInput
+        #input
+        maxlength="15"
+        placeholder="Ex. Pikachu or 25"
+        [(ngModel)]="search"
+        (ngModelChange)="onChange($event)"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
     <mat-list-item
       (click)="updateId(pokemon.id)"
       *ngFor="let pokemon of pokemons"

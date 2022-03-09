@@ -12,6 +12,5 @@ export class PokedexComponent implements OnInit {
   ngOnInit(): void {}
   updatePokemon(idSelect: number) {
     this.idPokemonParent = idSelect;
-    console.log('updatePokemon');
   }
 }
