@@ -19,30 +19,42 @@ export class PokemonListComponent implements OnInit {
   }
   updateList(search: string) {
     this.pokemonServices
-      .getSearchPokemon(search)
+      .getSearchPokemon(search, this.offset)
       .subscribe((myResult) => (this.pokemons = myResult.data));
+  }
+  updateListScrool(search: string) {
+    this.pokemonServices
+      .getSearchPokemon(search, this.offset)
+      .subscribe((myResult) =>
+        this.pokemons?.push.apply(this.pokemons, myResult.data)
+      );
   }
   getpokemons() {
     this.pokemonServices
       .getPokemons(this.offset)
       .subscribe((myResult) => (this.pokemons = myResult.data));
-    this.offset += 20;
   }
-  updateId(idselect: number) {
-    this.select.emit(idselect);
-  }
-  onScroll() {
+  getpokemonsScrool() {
     this.pokemonServices
       .getPokemons(this.offset)
       .subscribe((myResult) =>
         this.pokemons?.push.apply(this.pokemons, myResult.data)
       );
+  }
+  updateId(idselect: number) {
+    this.select.emit(idselect);
+  }
+  onScroll() {
     this.offset += 20;
+    if (this.search) {
+      this.updateListScrool(this.search);
+    } else {
+      this.getpokemonsScrool();
+    }
   }
   onChange(newval: string): void {
-    console.log(newval);
+    this.offset = 0;
     if (newval == '') {
-      this.offset = 0;
       this.getpokemons();
     } else {
       this.updateList(newval);
