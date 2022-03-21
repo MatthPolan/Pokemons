@@ -1,3 +1,4 @@
+import { AuthentificationModule } from './../authentification/authentification.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
@@ -15,7 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [
     PokemonListComponent,
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     PokedexComponent,
   ],
   imports: [
+    AuthentificationModule,
     CommonModule,
     MatListModule,
     AppRoutingModule,
@@ -36,6 +39,8 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatTableModule,
+    MatTabsModule,
   ],
   exports: [PokemonListComponent],
 })

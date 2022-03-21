@@ -1,9 +1,18 @@
 <mat-drawer-container autosize class="example-container">
-  <mat-drawer mode="side" opened
-    ><app-pokemon-list (select)="updatePokemon($event)"></app-pokemon-list
-  ></mat-drawer>
-  <mat-drawer-content
-    ><app-pokemon-detail [idPokemon]="idPokemonParent" *ngIf="idPokemonParent">
-    </app-pokemon-detail
-  ></mat-drawer-content>
+  <mat-drawer mode="side" opened>
+    <mat-tab-group>
+      <mat-tab label="First">
+        <app-pokemon-list (select)="updatePokemon($event)"></app-pokemon-list>
+      </mat-tab>
+      <mat-tab label="Second">
+        <app-auth-form></app-auth-form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-pokemon-detail
+      [idPokemon]="idPokemonParent"
+      *ngIf="idPokemonParent"
+    ></app-pokemon-detail>
+  </mat-drawer-content>
 </mat-drawer-container>
