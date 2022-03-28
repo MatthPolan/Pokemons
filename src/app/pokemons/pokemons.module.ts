@@ -18,6 +18,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TeamModule } from '../team/team.module';
+import { MatBadgeModule } from '@angular/material/badge';
+
 @NgModule({
   declarations: [
     PokemonListComponent,
@@ -41,6 +45,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     FormsModule,
     MatTableModule,
     MatTabsModule,
+    MatDialogModule,
+    TeamModule,
+    MatBadgeModule,
   ],
   exports: [PokemonListComponent],
 })

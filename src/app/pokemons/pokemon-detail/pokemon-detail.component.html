@@ -1,4 +1,4 @@
-<mat-card class="center-text" *ngIf="pokemonDetail">
+<mat-card class="center-text" *ngIf="pokemonDetail; else noDetail">
   <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile>
       <mat-list>
@@ -43,3 +43,28 @@
   </mat-grid-list>
   <h4>{{ pokemonDetail.description }}</h4>
 </mat-card>
+<ng-template #noDetail>
+  <div class="noDetail">
+    <img class="img-font" src="../../../assets/img/pngwing.com.png " />
+  </div>
+</ng-template>
+<div class="example-button-row">
+  <button
+    class="btn_auth"
+    color="primary"
+    mat-raised-button
+    *ngIf="!isConnected()"
+    (click)="openDialog()"
+  >
+    Connect
+  </button>
+  <button
+    mat-raised-button
+    class="btn_auth"
+    color="primary"
+    *ngIf="isConnected()"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+</div>

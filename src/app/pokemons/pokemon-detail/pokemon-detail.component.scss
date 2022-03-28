@@ -6,3 +6,18 @@
 .center-text {
   text-align: center;
 }
+.btn_auth {
+  position: absolute;
+  right: 5%;
+  top: 90%;
+  font-size: 1.6em;
+}
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+.noDetail {
+  display: flex;
+  margin-top: 10%;
+
+  justify-content: center;
+}

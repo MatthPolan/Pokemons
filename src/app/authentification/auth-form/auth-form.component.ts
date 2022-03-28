@@ -1,7 +1,9 @@
+import { PokemonDetailComponent } from './../../pokemons/pokemon-detail/pokemon-detail.component';
 import { Component, OnInit } from '@angular/core';
-import { Trainer } from 'src/app/models/trainer';
 import { TrainerFill } from 'src/app/models/trainer-fill';
 import { AuthService } from '../services/auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TeamService } from 'src/app/team/services/team.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -16,7 +18,11 @@ export class AuthFormComponent implements OnInit {
   trainerConnected!: Object;
   email!: string;
   password!: string;
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    public dialogRef: MatDialogRef<PokemonDetailComponent>,
+    private teamService: TeamService
+  ) {}
   pushedButton(choice: number) {
     if (choice == 0) {
       //Create a trainer
@@ -35,12 +41,13 @@ export class AuthFormComponent implements OnInit {
     if (this.loginForm) {
       this.authService
         .Login(this.trainerFill)
-        .subscribe((myResult) => (this.trainerConnected = myResult));
+        .subscribe((myResult) => this.teamService.setToken(myResult));
     } else if (this.email) {
       this.authService
         .CreateTrainer(this.trainerFill)
-        .subscribe((myResult) => (this.trainerConnected = myResult));
+        .subscribe((myResult) => this.teamService.setToken(myResult));
     }
+    this.dialogRef.close();
   }
   ngOnInit(): void {}
 }

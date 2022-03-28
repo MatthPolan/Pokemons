@@ -5,7 +5,11 @@
     (scrolled)="onScroll()"
     class="nav"
   >
-    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+    <mat-form-field
+      hintLabel="Max 10 characters"
+      appearance="fill"
+      class="text-field"
+    >
       <mat-label>Enter some input</mat-label>
       <input
         matInput
@@ -21,14 +25,29 @@
       (click)="updateId(pokemon.id)"
       *ngFor="let pokemon of pokemons"
     >
-      <img
-        matListAvatar
-        src="../../../assets/img/sprites/{{ pokemon.id }}.png"
-        alt="error loading image"
-        class="avatar"
-      />
-      {{ pokemon.id }}.
-      {{ pokemon.name }}
+      <mat-list-item
+        ><img
+          matListAvatar
+          src="../../../assets/img/sprites/{{ pokemon.id }}.png"
+          alt="error loading image"
+          class="avatar"
+        />
+        {{ pokemon.id }}. {{ pokemon.name }}</mat-list-item
+      >
+      <button
+        mat-icon-button
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon
+          *ngIf="isConnected()"
+          [matBadge]="selectedTimes(pokemon.id)"
+          matBadgeColor="warn"
+          aria-hidden="false"
+          (click)="addPokemonsToMyTeam($event, pokemon.id)"
+          aria-label="Example home icon"
+          >add</mat-icon
+        >
+      </button>
     </mat-list-item>
   </mat-nav-list>
 </mat-list>

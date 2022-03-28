@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/models/pokemon';
 import { PokemonService } from '../services/pokemon.service';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { TeamService } from 'src/app/team/services/team.service';
+import { AuthFormComponent } from 'src/app/authentification/auth-form/auth-form.component';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -15,7 +17,9 @@ export class PokemonDetailComponent implements OnInit, OnChanges {
   audio?: HTMLAudioElement;
   constructor(
     private pokemonService: PokemonService,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog,
+    private teamService: TeamService
   ) {}
 
   ngOnInit(): void {}
@@ -41,5 +45,18 @@ export class PokemonDetailComponent implements OnInit, OnChanges {
   }
   playsound() {
     this.audio?.play();
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(AuthFormComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  logout() {
+    this.teamService.logout();
+  }
+  isConnected() {
+    return this.teamService.isConnected();
   }
 }

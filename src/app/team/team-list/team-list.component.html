@@ -1,0 +1,27 @@
+<mat-list>
+  <mat-nav-list class="nav">
+    <mat-list-item>My Pokemon Team :</mat-list-item>
+    <mat-list-item *ngFor="let pokemon of pokemonTeam">
+      <mat-list-item
+        ><img
+          matListAvatar
+          src="../../../assets/img/sprites/{{ pokemon.id }}.png"
+          alt="error loading image"
+          class="avatar"
+        />
+        {{ pokemon.id }}. {{ pokemon.name }}</mat-list-item
+      >
+      <button
+        mat-icon-button
+        aria-label="Example icon-button with a heart icon"
+      >
+        <mat-icon
+          aria-hidden="false"
+          (click)="removePokemon($event, pokemon.id)"
+          aria-label="Example home icon"
+          >remove</mat-icon
+        >
+      </button>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-list>

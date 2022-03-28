@@ -1,18 +1,24 @@
 <mat-drawer-container autosize class="example-container">
   <mat-drawer mode="side" opened>
     <mat-tab-group>
-      <mat-tab label="First">
-        <app-pokemon-list (select)="updatePokemon($event)"></app-pokemon-list>
+      <mat-tab label="Pokemons">
+        <app-pokemon-list
+          [teamPokemonList]="teamPokList"
+          (select)="updatePokemon($event)"
+        ></app-pokemon-list>
       </mat-tab>
-      <mat-tab label="Second">
-        <app-auth-form></app-auth-form>
-      </mat-tab>
+      <mat-tab label="My Team">
+        <app-team-list
+          (sendTabId)="teamPokemonList($event)"
+          *ngIf="isConnected(); else templateName"
+        ></app-team-list>
+        <ng-template #templateName>
+          Connectez-vous pour acceder à la <br />partie "My Team"
+        </ng-template></mat-tab
+      >
     </mat-tab-group>
   </mat-drawer>
   <mat-drawer-content>
-    <app-pokemon-detail
-      [idPokemon]="idPokemonParent"
-      *ngIf="idPokemonParent"
-    ></app-pokemon-detail>
+    <app-pokemon-detail [idPokemon]="idPokemonParent"></app-pokemon-detail>
   </mat-drawer-content>
 </mat-drawer-container>

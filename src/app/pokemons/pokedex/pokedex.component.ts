@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Pokemon } from 'src/app/models/pokemon';
+import { TeamService } from '../../team/services/team.service';
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokedexComponent implements OnInit {
   idPokemonParent?: number;
-  constructor() {}
+  teamPokList?: number[];
+  constructor(private teamService: TeamService) {}
 
   ngOnInit(): void {}
   updatePokemon(idSelect: number) {
     this.idPokemonParent = idSelect;
+  }
+  isConnected() {
+    return this.teamService.isConnected();
+  }
+  teamPokemonList(team?: number[]) {
+    this.teamPokList = team;
   }
 }

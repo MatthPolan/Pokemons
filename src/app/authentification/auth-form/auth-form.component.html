@@ -1,3 +1,4 @@
+<mat-card-title> Option de connection </mat-card-title>
 <mat-card>
   <div *ngIf="!loginForm && !createAccount">
     <div class="example-button-row">
@@ -26,7 +27,12 @@
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input [(ngModel)]="password" matInput placeholder="Placeholder" />
+        <input
+          [(ngModel)]="password"
+          matInput
+          type="password"
+          placeholder="Placeholder"
+        />
         <mat-icon matSuffix>password</mat-icon>
       </mat-form-field>
     </mat-card-content>
