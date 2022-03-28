@@ -49,9 +49,7 @@ export class PokemonDetailComponent implements OnInit, OnChanges {
   openDialog() {
     const dialogRef = this.dialog.open(AuthFormComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   logout() {
     this.teamService.logout();

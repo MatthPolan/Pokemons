@@ -10,7 +10,11 @@ import { PokemonService } from '../services/pokemon.service';
 export class PokemonListComponent implements OnInit {
   pokemons?: Pokemon[];
   search?: string = '';
+
   @Input() teamPokemonList?: number[];
+
+  @Output() teamPokemonListChange = new EventEmitter<number[]>();
+
   @Output() select: EventEmitter<number> = new EventEmitter<number>();
   offset: number = 0;
 
@@ -43,8 +47,6 @@ export class PokemonListComponent implements OnInit {
       .subscribe((myResult) => (this.pokemons = myResult.data));
   }
   getpokemonsScroll() {
-    console.log(this.teamPokemonList);
-
     this.pokemonServices
       .getPokemons(this.offset)
       .subscribe((myResult) =>
@@ -89,13 +91,9 @@ export class PokemonListComponent implements OnInit {
     if (this.teamPokemonList) {
       const temps = Object.assign([], this.teamPokemonList);
       temps.push(id);
-
-      console.log('temps' + temps);
-      console.log('listpke before ' + this.teamPokemonList);
-
       this.teamService.updateMyTeam(temps).subscribe((data) => {
         this.teamPokemonList = temps;
-        console.log('listpke AFTER ' + this.teamPokemonList);
+        this.teamPokemonListChange.emit(this.teamPokemonList);
       });
     }
   }

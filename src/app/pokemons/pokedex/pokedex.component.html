@@ -3,13 +3,13 @@
     <mat-tab-group>
       <mat-tab label="Pokemons">
         <app-pokemon-list
-          [teamPokemonList]="teamPokList"
           (select)="updatePokemon($event)"
+          [(teamPokemonList)]="teamPokList"
         ></app-pokemon-list>
       </mat-tab>
       <mat-tab label="My Team">
         <app-team-list
-          (sendTabId)="teamPokemonList($event)"
+          [(idPok)]="teamPokList"
           *ngIf="isConnected(); else templateName"
         ></app-team-list>
         <ng-template #templateName>

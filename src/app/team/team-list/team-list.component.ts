@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon';
 import { TeamService } from '../services/team.service';
 
@@ -8,16 +15,21 @@ import { TeamService } from '../services/team.service';
   styleUrls: ['./team-list.component.scss'],
 })
 export class TeamListComponent implements OnInit {
-  idPok?: number[] = [];
-  @Output() sendTabId: EventEmitter<number[]> = new EventEmitter<number[]>();
+  @Input() idPok?: number[] = [];
+  @Output() idPokChange = new EventEmitter<number[]>();
+
   pokemonTeam?: Pokemon[];
   constructor(private teamService: TeamService) {}
 
   ngOnInit(): void {
     this.getMyTeam();
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['idPok'].currentValue)
+      this.getPokemonTeambyId(changes['idPok'].currentValue);
+  }
   PostData() {
-    this.sendTabId.emit(this.idPok);
+    this.idPokChange.emit(this.idPok);
   }
   getMyTeam() {
     this.teamService
@@ -25,17 +37,12 @@ export class TeamListComponent implements OnInit {
       .subscribe((ids) => this.getPokemonTeambyId(ids));
   }
   getPokemonTeambyId(ids: number[]) {
-    console.log('id' + ids);
-
     this.idPok = ids;
     this.PostData();
-    console.log('idPoke' + this.idPok);
 
-    if (this.idPok != null) {
-      this.teamService
-        .getPokemonsByList(ids)
-        .subscribe((myResult) => (this.pokemonTeam = myResult));
-    }
+    this.teamService
+      .getPokemonsByList(ids)
+      .subscribe((myResult) => (this.pokemonTeam = myResult));
   }
   removePokemon(event: Event, idRemove: number) {
     event.preventDefault();
@@ -44,9 +51,13 @@ export class TeamListComponent implements OnInit {
 
     let index = this.idPok?.indexOf(idRemove);
     const temps = Object.assign([], this.idPok);
+
     if (index! > -1) {
       temps.splice(index!, 1);
+      console.log(temps);
+
       this.teamService.updateMyTeam(temps).subscribe((data) => {
+        this.idPok = temps;
         this.getPokemonTeambyId(temps);
       });
     }
