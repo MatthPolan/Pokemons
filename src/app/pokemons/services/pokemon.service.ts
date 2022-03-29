@@ -1,8 +1,10 @@
-import { PagedData } from './../../models/paged-data';
-import { Pokemon } from './../../models/pokemon';
+import { Observable } from 'rxjs';
+
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import { PagedData } from '../../models/paged-data';
+import { Pokemon } from '../../models/pokemon';
 
 @Injectable({
   providedIn: 'root',

@@ -1,9 +1,11 @@
-import { PokemonDetailComponent } from './../../pokemons/pokemon-detail/pokemon-detail.component';
-import { Component, OnInit } from '@angular/core';
 import { TrainerFill } from 'src/app/models/trainer-fill';
-import { AuthService } from '../services/auth.service';
-import { MatDialogRef } from '@angular/material/dialog';
 import { TeamService } from 'src/app/team/services/team.service';
+
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+
+import { PokemonDetailComponent } from '../../pokemons/pokemon-detail/pokemon-detail.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth-form',

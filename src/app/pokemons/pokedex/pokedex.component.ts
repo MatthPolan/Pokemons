@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TeamService } from '../../team/services/team.service';
+
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',

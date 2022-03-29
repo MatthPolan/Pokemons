@@ -1,11 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
-import { PagedData } from 'src/app/models/paged-data';
-import { Pokemon } from 'src/app/models/pokemon';
 import { Trainer } from 'src/app/models/trainer';
-import { HttpHeaders } from '@angular/common/http';
 import { PokemonService } from 'src/app/pokemons/services/pokemon.service';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +16,8 @@ export class TeamService {
     private pokemonService: PokemonService
   ) {}
   isConnected() {
-    if (localStorage.getItem('access_token')) {
-      return true;
+    if (localStorage.getItem('access_token') != null) {
+      return !this.tokenExpired(localStorage.getItem('access_token'));
     }
     return false;
   }
@@ -28,6 +26,13 @@ export class TeamService {
   }
   getAccesToken() {
     return localStorage.getItem('access_token');
+  }
+  private tokenExpired(token: string | null) {
+    if (token == null) {
+      return true;
+    }
+    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+    return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
   setToken(myResult: Trainer) {
     localStorage.setItem('access_token', myResult.access_token),

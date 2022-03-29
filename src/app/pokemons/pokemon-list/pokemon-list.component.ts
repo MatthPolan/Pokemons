@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pokemon } from 'src/app/models/pokemon';
 import { TeamService } from 'src/app/team/services/team.service';
+
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { PokemonService } from '../services/pokemon.service';
+
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
@@ -96,5 +99,11 @@ export class PokemonListComponent implements OnInit {
         this.teamPokemonListChange.emit(this.teamPokemonList);
       });
     }
+  }
+  isDisabled() {
+    if (this.teamPokemonList!.length >= 6) {
+      return true;
+    }
+    return false;
   }
 }

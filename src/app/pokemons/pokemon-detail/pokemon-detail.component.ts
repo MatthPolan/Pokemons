@@ -1,10 +1,12 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon';
-import { PokemonService } from '../services/pokemon.service';
-import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { TeamService } from 'src/app/team/services/team.service';
 import { AuthFormComponent } from 'src/app/authentification/auth-form/auth-form.component';
+import { Pokemon } from 'src/app/models/pokemon';
+import { TeamService } from 'src/app/team/services/team.service';
+
+import { Location } from '@angular/common';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { PokemonService } from '../services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-detail',

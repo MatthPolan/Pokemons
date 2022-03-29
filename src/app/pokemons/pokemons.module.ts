@@ -1,26 +1,28 @@
-import { AuthentificationModule } from './../authentification/authentification.module';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { MatListModule } from '@angular/material/list';
-import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { PokedexComponent } from './pokedex/pokedex.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatDialogModule } from '@angular/material/dialog';
+
+import { AppRoutingModule } from '../app-routing.module';
+import { AuthentificationModule } from '../authentification/authentification.module';
 import { TeamModule } from '../team/team.module';
-import { MatBadgeModule } from '@angular/material/badge';
+import { PokedexComponent } from './pokedex/pokedex.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 
 @NgModule({
   declarations: [
