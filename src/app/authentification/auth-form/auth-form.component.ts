@@ -45,9 +45,11 @@ export class AuthFormComponent implements OnInit {
         .Login(this.trainerFill)
         .subscribe((myResult) => this.teamService.setToken(myResult));
     } else if (this.email) {
-      this.authService
-        .CreateTrainer(this.trainerFill)
-        .subscribe((myResult) => this.teamService.setToken(myResult));
+      this.authService.CreateTrainer(this.trainerFill).subscribe((myResult) => {
+        this.authService
+          .Login(this.trainerFill)
+          .subscribe((userToken) => this.teamService.setToken(userToken));
+      });
     }
     this.dialogRef.close();
   }

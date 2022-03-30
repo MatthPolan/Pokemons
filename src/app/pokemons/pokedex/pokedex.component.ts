@@ -9,7 +9,7 @@ import { TeamService } from '../../team/services/team.service';
 })
 export class PokedexComponent implements OnInit {
   idPokemonParent?: number;
-  teamPokList?: number[];
+  teamPokList?: number[] = [];
   constructor(private teamService: TeamService) {}
 
   ngOnInit(): void {}

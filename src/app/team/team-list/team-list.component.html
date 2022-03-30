@@ -2,7 +2,7 @@
   <mat-nav-list class="nav">
     <mat-list-item>My Pokemon Team :</mat-list-item>
     <mat-list-item *ngFor="let pokemon of pokemonTeam">
-      <mat-list-item
+      <mat-list-item (click)="updateId(pokemon.id)"
         ><img
           matListAvatar
           src="../../../assets/img/sprites/{{ pokemon.id }}.png"

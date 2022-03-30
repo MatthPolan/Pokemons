@@ -1,6 +1,13 @@
 import { Pokemon } from 'src/app/models/pokemon';
 
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 import { TeamService } from '../services/team.service';
 
@@ -13,6 +20,8 @@ export class TeamListComponent implements OnInit {
   @Input() idPok?: number[] = [];
   @Output() idPokChange = new EventEmitter<number[]>();
 
+  @Output() detailPok: EventEmitter<number> = new EventEmitter<number>();
+
   pokemonTeam?: Pokemon[];
   constructor(private teamService: TeamService) {}
 
@@ -22,6 +31,9 @@ export class TeamListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['idPok'].currentValue)
       this.getPokemonTeambyId(changes['idPok'].currentValue);
+  }
+  updateId(idselect: number) {
+    this.detailPok.emit(idselect);
   }
   PostData() {
     this.idPokChange.emit(this.idPok);

@@ -10,6 +10,7 @@
       <mat-tab label="My Team">
         <app-team-list
           [(idPok)]="teamPokList"
+          (detailPok)="updatePokemon($event)"
           *ngIf="isConnected(); else templateName"
         ></app-team-list>
         <ng-template #templateName>
