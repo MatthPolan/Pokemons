@@ -22,18 +22,23 @@ C'est dans le composant pokemon-détail que l'on accède au button pour se conne
 ##### Team module
 Ce module comporte un composant (team-list) et un service. La team-list de nos pokemons ne s'affiche que si on est connecté.  
 Il est possible d'ajouter un pokemon à la list directement depuis le composant list-pokemon du module Pokemon.  
-Pour en supprimer un, on click sur le moins dans la team-list.  
+Pour en supprimer un, on click sur le "moins" dans la team-list.  
 
 ## Principale Difficulté rencontrée : 
 ##### Binding pour la list des pokémons de ma team.  
-En effect, la récuperetion de cette list se fait dans le service du module team, on l'envoie dans le composant  
+En effect, la récuperation de cette list se fait dans le service du module team, on l'envoie dans le composant  
 pokemon-list via le composant pokemon pour l'afficher.  
 Mais l'ajout et la suppression d'un pokémon se faisant pas au même endroit (module pokemon via le service team pour l'un et   
 pour l'autre module team via le service team) il faut donc faire un two way binding.  
 La team-list est donc a la fois en @INPUT mais aussi en @OUTPUT.
-La team-list est fonctionnelle avec cette implémentation. 
+La team-list est fonctionnelle avec cette implémentation (après avoir bien réflechi). 
 
 ##### Autre Remarque:
 Pour la gestion de la connection j'ai utilisé le localstorage pour stocker les tokens.  
 Je vérifie qu'ils sont présents et non expirés. Il aurait été possible de vérifier en plus leur validité,   
-mais si ils sont faux de toute facon les appels api planteront.  
+mais si ils sont faux de toute facon les appels api planteront.
+
+La gestion d'erreur n'est pas implémentée.
+
+#### Le code est sans erreur visuelle ou console
+Ps: La branch outdated n'est pas à prendre en compte.
