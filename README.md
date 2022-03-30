@@ -36,4 +36,9 @@ La team-list est fonctionnelle avec cette implémentation.
 ##### Autre Remarque:
 Pour la gestion de la connection j'ai utilisé le localstorage pour stocker les tokens.  
 Je vérifie qu'ils sont présents et non expirés. Il aurait été possible de vérifier en plus leur validité,   
-mais si ils sont faux de toute facon les appels api planteront.  
+mais si ils sont faux de toute facon les appels api planteront.
+
+La gestion d'erreur n'est pas implémentée.
+
+#### Le code est sans erreur visuelle ou console
+Ps: La branch outdated n'est pas à prendre en compte.
